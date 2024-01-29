@@ -2,13 +2,12 @@
 import http from 'http';
 // import https from 'https'; // port 443
 
-import { port } from './config';
+import { config } from './app/config.js';
+import { app } from './app/index.js';
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
+const { port } = config;
+
+const server = http.createServer(app);
 
 server.listen(port, () => {
   console.log(`Server running at port: ${port}/`);
